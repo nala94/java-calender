@@ -12,31 +12,40 @@ public class Calendar {
 		System.out.println("15 16  17  18  19 20 21");
 		System.out.println("22 23  24  25  26 27 28");
 	}
-	//final을 선언하면 변수의 값이 수정될 수 없다
-	public static final int[] MAX_DAYS = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+	// final을 선언하면 변수의 값이 수정될 수 없다
+	public static final int[] MAX_DAYS = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
 	public int getMaxDaysOfMonth(int month) {
 		return MAX_DAYS[month - 1];
 	}
-	
+
 	public static void main(String[] args) {
+
 		
-		
-		// 수를 입력받아 달의 최대일수를 출력하는 프로그램
-		System.out.println("달을 입력하세요 : ");
 		Scanner scanner = new Scanner(System.in);
 		Calendar cal = new Calendar();
-		int month = scanner.nextInt();
 		
+										// 입력받은 반복횟수 n만큼 월을 입력
+		System.out.println("반복횟수를 입력하세요.");
+		int n = scanner.nextInt();
+
+										// 입력받은 월만큼의 개수의 배열을 만듬
+		int[] numbers = new int[n];
+
+										// 입력받은 정수(월)들을 numbers 배열에 저장
+		System.out.println("월을 입력하세요.");
+		for (int j = 0; j < n; j++) {
+			numbers[j] = scanner.nextInt();
+		}
 			
-		System.out.printf("%d월은 %d일까지 있습니다.\n", month, cal.getMaxDaysOfMonth(month));
-		
-		cal.printSampleCalendar();
-		
+										// 반복문을 통해 각 달의 최대일수를 출력
+		for (int i = 0; i < numbers.length; i++) {
+			System.out.printf("%d월은 %d일까지 있습니다.\n", numbers[i], cal.getMaxDaysOfMonth(numbers[i]));
+
+		}
 		scanner.close();
-		
-	
 
 	}
-
 
 }
