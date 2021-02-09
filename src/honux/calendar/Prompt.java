@@ -23,7 +23,7 @@ public class Prompt {
 				continue;
 			}
 			
-			cal.printCalendar(2017, month);
+			cal.printCalendar(1988, month);
 		}
 
 		System.out.println("Bye~");

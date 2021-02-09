@@ -13,7 +13,14 @@ public class Calendar {
 		System.out.println(" SU MO TU WE TU FR SA");
 		System.out.println("---------------------");
 		
-		int maxDay = getMaxDaysOfMonth(month);		
+		int maxDay = getMaxDaysOfMonth(month);
+		if(year % 4 == 0 && year % 100 == 0 && year % 400 == 0 && month == 2) {
+			maxDay = 29;
+		} else if(year % 4 == 0 && year % 100 == 0 && month == 2){
+			maxDay = 28;
+		} else if(year % 4 == 0 &&  month == 2) {
+			maxDay = 29;
+		}
 		for(int i=1; i<=maxDay; i++) {
 			System.out.printf("%3d", i);
 			// i룰 7로 나눈 나머지
