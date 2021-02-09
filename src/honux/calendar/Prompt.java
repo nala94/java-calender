@@ -4,17 +4,21 @@ import java.util.Scanner;
 
 public class Prompt {
 
-	private final static String PROMPT = "cal> ";
+//	private final static String PROMPT = "cal> ";
 
 	public void runPrompt() {
 		Scanner scanner = new Scanner(System.in);
 		Calendar cal = new Calendar();
-
+		
+		int year;
 		int month = 1;
 
 		while (true) {
+			System.out.println("연도를 입력하세요");
+			System.out.print("YEAR> ");
+			year = scanner.nextInt();
 			System.out.println("달을 입력하세요");
-			System.out.print(PROMPT);
+			System.out.print("MONTH> ");
 			month = scanner.nextInt();
 			if (month == -1) {
 				break;
@@ -23,7 +27,7 @@ public class Prompt {
 				continue;
 			}
 			
-			cal.printCalendar(1988, month);
+			cal.printCalendar(year, month);
 		}
 
 		System.out.println("Bye~");
