@@ -24,19 +24,23 @@ public class Calendar {
 
 		// 수를 입력받아 달의 최대일수를 출력하는 프로그램
 		Scanner scanner = new Scanner(System.in);
-		Calendar cal = new Calendar();
+		Calendar cal = new Calendar();		
 		
-		System.out.println("반복횟수를 입력하세요.");
-		int repeat = scanner.nextInt();
-		
-		// 반복횟수를 알때는 for
-		for (int i=0; i<repeat; i++) {
-			System.out.println("달을 입력하세요 : ");
+						
+		//반복 횟수를 모르니 while?
+		// -1을 입력받기 전까지 계속 반복?
+		int i = 1;
+		while(i > 0) {
+			System.out.println("월을 입력하세요 \n>");
 			int month = scanner.nextInt();
-			System.out.printf("%d월은 %d일까지 있습니다.\n", month, cal.getMaxDaysOfMonth(month));
-		}
-		
-		System.out.println("Bye~");
+			if(month > 0 &&  month < 13 ) {
+				System.out.printf("%d월은 %d일까지 있습니다.\n", month, cal.getMaxDaysOfMonth(month));
+				i++;
+			} else {
+				System.out.println("Have a nice day!");
+				i = i*0;
+			}
+		}			
 		scanner.close();
 	}
 
