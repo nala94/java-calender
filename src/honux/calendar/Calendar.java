@@ -22,30 +22,22 @@ public class Calendar {
 
 	public static void main(String[] args) {
 
-		
+		// 수를 입력받아 달의 최대일수를 출력하는 프로그램
 		Scanner scanner = new Scanner(System.in);
 		Calendar cal = new Calendar();
 		
-										// 입력받은 반복횟수 n만큼 월을 입력
 		System.out.println("반복횟수를 입력하세요.");
-		int n = scanner.nextInt();
-
-										// 입력받은 월만큼의 개수의 배열을 만듬
-		int[] numbers = new int[n];
-
-										// 입력받은 정수(월)들을 numbers 배열에 저장
-		System.out.println("월을 입력하세요.");
-		for (int j = 0; j < n; j++) {
-			numbers[j] = scanner.nextInt();
+		int repeat = scanner.nextInt();
+		
+		// 반복횟수를 알때는 for
+		for (int i=0; i<repeat; i++) {
+			System.out.println("달을 입력하세요 : ");
+			int month = scanner.nextInt();
+			System.out.printf("%d월은 %d일까지 있습니다.\n", month, cal.getMaxDaysOfMonth(month));
 		}
-			
-										// 반복문을 통해 각 달의 최대일수를 출력
-		for (int i = 0; i < numbers.length; i++) {
-			System.out.printf("%d월은 %d일까지 있습니다.\n", numbers[i], cal.getMaxDaysOfMonth(numbers[i]));
-
-		}
+		
+		System.out.println("Bye~");
 		scanner.close();
-
 	}
 
 }
