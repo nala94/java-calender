@@ -19,12 +19,34 @@ public class Calendar {
 			return MAX_DAYS[month - 1];
 		}
 	}
+	
+	public int[] getMonth =     {0, 3, 3, 6, 8, 11, 13, 16, 19, 21, 24, 26};
+	public int[] LEAP_getMonth = {0, 3, 4, 7, 9, 12, 14, 17, 20, 22, 25, 27};
+	public int weekday;
+	
+	public int getWeekday(int year, int month) {
+		if(IsLeapYear(year)) {
+			return (getYear(year) + LEAP_getMonth[month-1]) % 7	;		
+		} else {
+			return (getYear(year) + getMonth[month-1]) % 7	;			
+		}
+	}
+	
+	public int getYear(int year) {
+		int _year = year - 1;
+		return _year + (_year/4) - (_year/100) + (_year/400);
+	}
+	
 		
 		
-	public void printCalendar(int year, int month, int weekday) {
-		System.out.printf("     <<%4d년%3d월>>\n", year, month);
+	public void printCalendar(int year, int month) {
+		System.out.printf("     <<%d년 %3d월>>\n", year, month);
 		System.out.println(" SU MO TU WE TH FR SA");
 		System.out.println("---------------------");
+		
+		// get weekday automatically
+		int _weekday = getWeekday(year, month);
+		int weekday = _weekday + 1;
 		
 		//print blank space
 		for(int j=0; j<weekday; j++) {
