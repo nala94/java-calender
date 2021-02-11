@@ -20,38 +20,40 @@ public class Calendar {
 		}
 	}
 		
-	public int firstDay(String weekday) {
-		if(weekday.equals("SU")) return 0;	
-		else if(weekday.equals("MO")) return 1;
-		else if(weekday.equals("TU")) return 2;
-		else if(weekday.equals("WE")) return 3;
-		else if(weekday.equals("TH")) return 4;
-		else if(weekday.equals("FR")) return 5;
-		else if(weekday.equals("SA")) return 6;
-		else return 0;
-	}	
 		
-	public void printCalendar(int year, int month, String weekday) {
+	public void printCalendar(int year, int month, int weekday) {
 		System.out.printf("     <<%4d년%3d월>>\n", year, month);
 		System.out.println(" SU MO TU WE TH FR SA");
 		System.out.println("---------------------");
 		
-		int week = firstDay(weekday);
-		for(int j=0; j<week; j++) {
+		//print blank space
+		for(int j=0; j<weekday; j++) {
 			System.out.print("   ");			
 		}
 		
-		int remain = (7-week);
-		for(int f=1; f<=remain; f++) {
+		int maxDay = getMaxDaysOfMonth(year, month);
+		int count = (7-weekday);
+		int delim = (count < 7) ? count : 0;
+		/*
+		int delim;
+		if(count < 7) {
+			delim = count;
+		} else {
+			delim = 0;
+		}*/
+		
+		// print first line
+		for(int f=1; f<=count; f++) {
 			System.out.printf("%3d", f);
 		}
 		System.out.println();
-
-		int maxDay = getMaxDaysOfMonth(year, month);
-		for (int i = remain+1; i <= maxDay; i++) {
+		
+		//print 2nd line to last line
+		
+		for (int i = count+1; i <= maxDay; i++) {
 			System.out.printf("%3d", i);
 			// i룰 7로 나눈 나머지
-			if (i % 7 == remain) {
+			if (i % 7 == delim) {
 				System.out.println();
 			}
 		}
