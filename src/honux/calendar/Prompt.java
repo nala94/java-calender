@@ -13,19 +13,30 @@ public class Prompt {
 				
 		printmenu();
 		
-		while (true) {						
+		boolean isLoop = true;
+		while (isLoop) {						
 			System.out.println("명령 (1, 2, 3, h, q)");
 			System.out.print("> ");			
 			String cmd = scanner.next();
-			if(cmd.equals("1")) cmdRegister();
-			else if(cmd.equals("2")) cmdSearch();
-			else if(cmd.equals("3")) cmdCal();				
-			else if(cmd.equals("h")) printmenu();
-			else if(cmd.equals("q")) break;
-			else {
-				System.out.println("잘못된 입력입니다.");
-				continue;
+			switch(cmd) {
+			case "1":
+				cmdRegister();
+				break;
+			case "2":
+				cmdSearch();
+				break;
+			case "3":
+				cmdCal();
+				break;
+			case "h":
+				printmenu();
+				break;
+			case "q":
+				isLoop = false;
+				break;
+				
 			}
+			
 			System.out.println();			
 		}
 		
@@ -93,6 +104,38 @@ public class Prompt {
 		System.out.println("| 3. 달력 보기");
 		System.out.println("| h. 도움말 q. 종료");
 		System.out.println("+----------------------+");
+	}
+	
+	public int parseDay(String week) {
+		
+		switch(week) {
+		case "su" :
+			return 0;
+		case "mo" :
+			return 1;
+		case "tu" :
+			return 2;
+		case "we" :
+			return 3;
+		case "th" :
+			return 4;
+		case "fr" :
+			return 5;
+		case "sa" :
+			return 6;
+		default : 
+			return 0;
+		
+		}
+		
+//		if(week.equals("su")) return 0;	
+//		else if(week.equals("mo")) return 1;
+//		else if(week.equals("tu")) return 2;
+//		else if(week.equals("we")) return 3;
+//		else if(week.equals("th")) return 4;
+//		else if(week.equals("fr")) return 5;
+//		else if(week.equals("sa")) return 6;
+//		else return 0;
 	}
 	
 	public static void main(String[] args) throws ParseException {
