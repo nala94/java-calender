@@ -1,10 +1,48 @@
 package honux.calendar;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+
 public class Calendar {
 	// final을 선언하면 변수의 값이 수정될 수 없다
 	public static final int[] MAX_DAYS = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	public static final int[] LEAP_MAX_DAYS = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	
+	private HashMap <Date, String> planMap;
+	
+	public Calendar() {
+		planMap = new HashMap<Date, String>();
+	}
+	
+	/**
+	 * 
+	 * @param date
+	 * @param plan
+	 * @throws ParseException 
+	 */
+	public void registerPlan(String strDate, String plan) throws ParseException {
+		
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
+//		System.out.println(date);
+		planMap.put(date, plan);
+	}
+	
+	public String searchPlan(String strDate) throws ParseException {
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
+		String plan = planMap.get(date);
+		return plan;
+	}
 
+	/*
+	 * String startDateString = "06/27/2007"; DateFormat df = new
+	 * SimpleDateFormat("MM/dd/yyyy"); Date startDate; try { startDate =
+	 * df.parse(startDateString); String newDateString = df.format(startDate);
+	 * System.out.println(newDateString); } catch (ParseException e) {
+	 * e.printStackTrace(); }
+	 */
+	
 	public boolean IsLeapYear(int year) {
 		if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
 			return true;
@@ -18,26 +56,7 @@ public class Calendar {
 		} else {
 			return MAX_DAYS[month - 1];
 		}
-	}
-	
-//	public int[] getMonth =     {0, 3, 3, 6, 8, 11, 13, 16, 19, 21, 24, 26};
-//	public int[] LEAP_getMonth = {0, 3, 4, 7, 9, 12, 14, 17, 20, 22, 25, 27};
-//	public int weekday;
-//	
-//	public int getWeekday(int year, int month) {
-//		if(IsLeapYear(year)) {
-//			return (getYear(year) + LEAP_getMonth[month-1]) % 7	;		
-//		} else {
-//			return (getYear(year) + getMonth[month-1]) % 7	;			
-//		}
-//	}
-//	
-//	public int getYear(int year) {
-//		int _year = year - 1;
-//		return _year + (_year/4) - (_year/100) + (_year/400);
-//	}
-//	
-//		
+	}	
 		
 	public void printCalendar(int year, int month) {
 		System.out.printf("     <<%d년 %3d월>>\n", year, month);
@@ -105,10 +124,14 @@ public class Calendar {
 	}
 	
 	//simple test code
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		Calendar cal = new Calendar();
-		System.out.println(cal.getweekDay(1970, 1, 1) == 3);
-		System.out.println(cal.getweekDay(1971, 1, 1) == 4);
+//		System.out.println(cal.getweekDay(1970, 1, 1) == 3);
+//		System.out.println(cal.getweekDay(1971, 1, 1) == 4);
+		cal.registerPlan("2021-03-07", "Let's go theater!");
+		cal.registerPlan("2017-06-23", "Let's eat beef!");
+		System.out.println(cal.searchPlan("2017-06-23").equals("Let's eat beef!"));
+		System.out.println(cal.searchPlan("2021-03-07").equals("Let's go theater!"));
 	}
 
 }
